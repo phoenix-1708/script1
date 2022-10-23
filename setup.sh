@@ -11,4 +11,4 @@ git clone https://github.com/akhilnarang/scripts bscripts && cd bscripts && bash
 mkdir -p ~/.config/rclone
 cp rclone.conf ~/.config/rclone/rclone.conf
 df -h && free -h && nproc
-mkdir -p /tmp/ccache
+mkdir -p $(pwd)/tmp/ccache
