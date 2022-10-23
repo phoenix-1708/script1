@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-cd /tmp
+cd /home/gitpod/tmp
 
 com () 
 { 
@@ -10,8 +10,8 @@ com ()
 
 time com ccache 1
 
-cd /tmp
-time rclone copy /tmp/rom/out/target/product/sweet/*.zip remote:sweet -P
+cd /home/gitpod/tmp
+time rclone copy /home/gitpod/tmp/rom/out/target/product/sweet/*.zip remote:sweet -P
 curl -s "https://api.telegram.org/bot1858827137:AAFZVaKOjAhjVyCXfiGgL-SK6dp7_lILZIE/sendMessage" -d chat_id=-509071822 -d text="Build Uploaded Successfully!"
-cd /tmp
+cd /home/gitpod/tmp
 time rclone copy ccache.tar.gz remote:ccache/ci2 -P
