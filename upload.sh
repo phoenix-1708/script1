@@ -1,12 +1,17 @@
 #!/bin/bash
-cd /tmp/rom
-source build/envsetup.sh
-lunch spark_sweet-user
-export CCACHE_DIR=/tmp/ccache
-export CCACHE_EXEC=$(which ccache)
-export USE_CCACHE=1
-ccache -M 12G
-ccache -o compression=true
-ccache -z
-export TZ=Asia/Dhaka
-mka bacon -j$(nproc --all)
+
+
+cd /tmp
+
+com () 
+{ 
+    tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
+}
+
+time com ccache 1
+
+cd /tmp
+time rclone copy /tmp/rom/out/target/product/sweet/*.zip remote:sweet -P
+curl -s "https://api.telegram.org/bot1858827137:AAFZVaKOjAhjVyCXfiGgL-SK6dp7_lILZIE/sendMessage" -d chat_id=-509071822 -d text="Build Uploaded Successfully!"
+cd /tmp
+time rclone copy ccache.tar.gz remote:ccache/ci2 -P
