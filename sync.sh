@@ -1,5 +1,5 @@
 #!/bin/bash
-cd tmp
+cd /tmp
 mkdir rom
 cd rom
 echo "initialising repo"
