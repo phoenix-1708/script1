@@ -1,4 +1,7 @@
 #!/bin/bash
+cd tmp
+mkdir rom
+cd rom
 echo "initialising repo"
 repo init --depth=1 --no-repo-verify -u https://github.com/Spark-Rom/manifest -b pyro -g default,-mips,-darwin,-notdefault
 echo "Syncing source"
