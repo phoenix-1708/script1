@@ -14,6 +14,9 @@ git clone https://github.com/phoenix-1708/device_sweet -b main --depth=1 device/
 echo "cloning vendor"
 git clone https://github.com/phoenix-1708/vendor_sweet -b main --depth=1 vendor/xiaomi/sweet
 
+echo "removing clang-r450784d"
+rm -rf prebuilts/clang/host/linux-x86/clang-r450784d
+
 echo "cloning clang"
 git clone https://gitlab.com/ImSurajxD/clang-r450784d -b master --depth=1 prebuilts/clang/host/linux-x86/clang-r450784d
 git clone https://gitlab.com/nerdprojectorg/SDClang -b 16 --depth=1 prebuilts/clang/host/linux-x86/clang-sdclang
