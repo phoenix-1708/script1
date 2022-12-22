@@ -21,8 +21,8 @@ echo "cloning clang"
 git clone https://gitlab.com/ImSurajxD/clang-r450784d -b master --depth=1 prebuilts/clang/host/linux-x86/clang-r450784d
 git clone https://gitlab.com/nerdprojectorg/SDClang -b 16 --depth=1 prebuilts/clang/host/linux-x86/clang-sdclang
 
-echo "cloning dolby"
-git clone https://gitlab.com/someone5678/vendor_dolby -b thirteen --depth=1 vendor/dolby
+#echo "cloning dolby"
+#git clone https://gitlab.com/someone5678/vendor_dolby -b thirteen --depth=1 vendor/dolby
 
 echo "cloning kernel"
 git clone https://github.com/phoenix-1708/kernel_xiaomi_sm6150 -b t13 --depth=1 kernel/xiaomi/sweet
