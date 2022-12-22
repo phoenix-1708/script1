@@ -1,7 +1,7 @@
 #!/bin/bash
 source build/envsetup.sh
 lunch lineage_sweet-userdebug
-export CCACHE_DIR=/tmp/ccache
+export CCACHE_DIR=/home/harikumar/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
 ccache -M 12G
