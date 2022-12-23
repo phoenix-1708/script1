@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/harikumar/tmp/rom
 sudo mkdir /mnt/ccache
 sudo mount --bind /home/harikumar/tmp/ccache /mnt/ccache
 source build/envsetup.sh
