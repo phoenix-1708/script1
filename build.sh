@@ -3,7 +3,7 @@ cd /home/harikumar/tmp/rom
 sudo mkdir /mnt/ccache
 sudo mount --bind /home/harikumar/tmp/ccache /mnt/ccache
 source build/envsetup.sh
-lunch lineage_sweet-userdebug
+lunch xtended_sweet-userdebug
 export CCACHE_DIR=/mnt/ccache
 export CCACHE_EXEC=/usr/bin/ccache
 export USE_CCACHE=1
@@ -13,4 +13,5 @@ ccache -z
 export BUILD_USERNAME=Harikumar
 export BUILD_HOSTNAME=prototype
 export TZ=Asia/Jakarta
-mka bacon -j$(nproc --all)
+make xtended -j$(nproc --all)
+#mka bacon -j$(nproc --all)
