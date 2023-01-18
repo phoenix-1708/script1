@@ -7,7 +7,7 @@ lunch lineage_sweet-userdebug
 export CCACHE_DIR=/mnt/ccache
 export CCACHE_EXEC=/usr/bin/ccache
 export USE_CCACHE=1
-ccache -M 12G
+ccache -M 8G
 ccache -o compression=true
 ccache -z
 export BUILD_USERNAME=Harikumar
