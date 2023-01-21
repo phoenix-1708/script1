@@ -13,5 +13,6 @@ cp rclone.conf ~/.config/rclone/rclone.conf
 df -h && free -h && nproc
 mkdir -p /home/harikumar/tmp
 cd /home/harikumar/tmp
-wget https://oshi.at/YtQE -O ccache.tar.gz --show-progress
-time tar xvf ccache.tar.gz
+mkdir ccache
+#wget https://oshi.at/YtQE -O ccache.tar.gz --show-progress
+#time tar xvf ccache.tar.gz
