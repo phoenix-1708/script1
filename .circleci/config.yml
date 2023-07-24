@@ -9,14 +9,58 @@ jobs:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
-      - image: cimg/base:stable
+      - image: ubuntu:18.04
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Hello, World!"
+          command: |
+           export DEBIAN_FRONTEND=noninteractive
+           apt update
+           apt install sudo
+           apt install time
+           apt install rclone
+           git clone https://github.com/phoenix-1708/scripts bscripts && cd bscripts && bash setup/android_build_env.sh && cd ..
+           DEBIAN_FRONTEND=noninteractive
+           sudo apt install python3 -y
+           sudo ln -sf /usr/bin/python3 /usr/bin/python
+           git config --global user.name "phoenix-1708"
+           git config --global user.email "harikumar1708@gmail.com"
+           git config --global color.ui true
+           mkdir -p ~/tmp/ccache
+           echo "ccache directory created"
+           cd ~/tmp
+           echo "============================"
+           echo "Syncing The Sources..."
+           echo "============================"
+           mkdir rom
+           cd ~/tmp/rom
+           repo init -q --no-repo-verify --depth=1 -u https://github.com/RisingTechOSS/android -b thirteen -g default,-mips,-darwin,-notdefault
+           git clone https://github.com/phoenix-1708/local_manifests --depth=1 -b rising .repo/local_manifests
+           repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
+           curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
+           echo "============================"
+           echo "Sync Completed!"
+           echo "============================"
+           echo "============================"
+           #Building
+           echo "Starting the Build..."
+           echo "============================"
+           cd ~/tmp/rom
+           export CCACHE_DIR=~/tmp/ccache
+           export CCACHE_EXEC=$(which ccache)
+           export USE_CCACHE=1
+           ccache -M 20G
+           ccache -o compression=true
+           ccache -z
+           source build/envsetup.sh > /dev/null 2>&1
+           lunch lineage_sweet-userdebug > /dev/null 2>&1
+           export ALLOW MISSING DEPENDENCIES=true
+           export SKIP_ABI_CHECKS=true
+           export SKIP_API_CHECKS=true
+           mka bacon -j$(nproc --all)
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
